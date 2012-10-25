@@ -30,6 +30,8 @@ public interface ScheduleService {
 
 	List<ScheduleDay> listScheduleDay();
 	
+	List<ScheduleDay> listComingScheduleDay();
+	
 	boolean hasComingScheduleDay();
 	
 	ScheduleDay addNextScheduleDay(Date fromDay, int dayOfWeek);
@@ -42,6 +44,8 @@ public interface ScheduleService {
 	void updateScheduleUser(ScheduleUser project);
 
 	void removeScheduleUser(Long id);
+	
+	ScheduleUser findScheduleUser(Long dayid, String email);
 
 	// Other
 	boolean hasUser();

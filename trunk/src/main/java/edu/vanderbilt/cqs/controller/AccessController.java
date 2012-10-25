@@ -30,7 +30,6 @@ public class AccessController extends RootController {
 	@RequestMapping(value = "/logout/success")
 	public String logoutSuccess(ModelMap model) {
 		model.remove("currentuser");
-		String message = "Logout Success!";
-		return "redirect:/login?message=" + message;
+		return "redirect:/";
 	}
 }

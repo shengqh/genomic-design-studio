@@ -5,6 +5,8 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import edu.vanderbilt.cqs.RegistrationType;
+
 public class ScheduleUserForm implements Serializable {
 	private static final long serialVersionUID = -8851661085048203556L;
 
@@ -14,12 +16,35 @@ public class ScheduleUserForm implements Serializable {
 
 	private Long id;
 	
+	@NotEmpty(message = "Firstname is a required field")
 	private String firstname;
 
+	@NotEmpty(message = "Lastname is a required field")
 	private String lastname;
+	
+	@NotEmpty(message = "Department is a required field")
+	private String department;
+
+	public String getDepartment() {
+		return this.department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	private RegistrationType regType;
+	
+	public RegistrationType getRegType() {
+		return regType;
+	}
+
+	public void setRegType(RegistrationType regType) {
+		this.regType = regType;
+	}
 
 	@Email
-	@NotEmpty
+	@NotEmpty(message = "Email is a required field")
 	private String email;
 
 	public String getEmail() {

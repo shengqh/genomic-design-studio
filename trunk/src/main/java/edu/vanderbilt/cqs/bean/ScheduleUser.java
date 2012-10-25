@@ -11,31 +11,55 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import edu.vanderbilt.cqs.RegistrationType;
+
 @Entity
 public class ScheduleUser implements Serializable {
 	private static final long serialVersionUID = 7401126221031716368L;
 
 	@Id
 	@GeneratedValue
-	@Column(name="ID")
+	@Column(name = "ID")
 	private Long id;
 
-	@Column(name="FIRSTNAME")
+	@Column(name = "FIRSTNAME")
 	private String firstname = "";
 
-	@Column(name="LASTNAME")
+	@Column(name = "LASTNAME")
 	private String lastname = "";
 
-	@Column(name="EMAIL")
-	private String email;
+	@Column(name = "EMAIL")
+	private String email = "";
 
-	@Column(name="REGISTERTIME")
+	@Column(name = "DEPARTMENT")
+	private String department = "";
+
+	public String getDepartment() {
+		return this.department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	@Column(name = "REGISTERTIME")
 	private Date registerTime;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DAY_ID")
 	private ScheduleDay day;
-	
+
+	@Column(name = "REGISTRATIONTYPE")
+	private RegistrationType regType = RegistrationType.rtOnsite;
+
+	public RegistrationType getRegType() {
+		return regType;
+	}
+
+	public void setRegType(RegistrationType regType) {
+		this.regType = regType;
+	}
+
 	public Long getId() {
 		return id;
 	}
