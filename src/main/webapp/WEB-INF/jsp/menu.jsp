@@ -11,8 +11,9 @@
 	<ul>
 		<li><a href="${homeUrl}">Home</a></li>
 
-			<li><a href="${scheduleUrl}">Schedule</a></li>
+		<li><a href="${scheduleUrl}">Schedule</a></li>
 
+		<%-- 
 		<sec:authorize access="hasRole('ROLE_USER')">
 			<sec:authorize ifAnyGranted="ROLE_ADMIN">
 				<li><a href="${userAllUrl}">User</a></li>
@@ -25,6 +26,7 @@
 		<li><a href="${passwordUrl}">Change Password</a></li>
 
 		<li><a href="${logoutUrl}">Logout</a></li>
+		--%>
 	</ul>
 	<span id="menu-username"><%=SecurityContextHolder.getContext().getAuthentication()
 					.getName()%></span> <br style="clear: left" />

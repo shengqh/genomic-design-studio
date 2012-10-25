@@ -1,5 +1,6 @@
 package edu.vanderbilt.cqs.service;
 
+import java.util.Date;
 import java.util.List;
 
 import edu.vanderbilt.cqs.bean.ScheduleDay;
@@ -28,6 +29,10 @@ public interface ScheduleService {
 	void removeScheduleDay(Long id);
 
 	List<ScheduleDay> listScheduleDay();
+	
+	boolean hasComingScheduleDay();
+	
+	ScheduleDay addNextScheduleDay(Date fromDay, int dayOfWeek);
 
 	// ScheduleUser
 	ScheduleUser findScheduleUser(Long id);
