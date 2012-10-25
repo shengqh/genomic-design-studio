@@ -1,5 +1,6 @@
 package edu.vanderbilt.cqs.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,8 +149,21 @@ public class ScheduleServiceImpl implements ScheduleService {
 		scheduleDayDAO.update(day);
 	}
 
+	@Transactional
 	@Override
 	public List<ScheduleDay> listScheduleDay() {
 		return scheduleDayDAO.findAll();
+	}
+
+	@Transactional
+	@Override
+	public boolean hasComingScheduleDay() {
+		return scheduleDayDAO.hasComingScheduleDay();
+	}
+
+	@Transactional
+	@Override
+	public ScheduleDay addNextScheduleDay(Date fromDay, int dayOfWeek) {
+		return scheduleDayDAO.addNextScheduleDay(fromDay, dayOfWeek);
 	}
 }

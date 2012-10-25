@@ -36,16 +36,21 @@ public class ApplicationListenerImpl implements
 			addUser("yu.shyr@vanderbilt.edu", "cqs", Role.ADMIN);
 			addUser("yan.guo@vanderbilt.edu", "cqs", Role.ADMIN);
 			addUser("fei.ye@vanderbilt.edu", "cqs", Role.ADMIN);
-			
-			Date day1 = Utils.getNextDay(null, Calendar.TUESDAY);
-			ScheduleDay sday1 = addDay(day1);
-			Date day2 = Utils.getNextDay(day1, Calendar.TUESDAY);
-			ScheduleDay sday2 = addDay(day2);
-			
-			addScheduleUser(sday1, "quanhu.sheng@vanderbilt.edu", "Quanhu", "Sheng");
-			addScheduleUser(sday1, "shengqh@gmail.com", "Tiger", "Sheng");
+		}
+
+		if (!service.hasComingScheduleDay()) {
+			ScheduleDay sday1 = service.addNextScheduleDay(null,
+					Calendar.TUESDAY);
+			ScheduleDay sday2 = service.addNextScheduleDay(
+					sday1.getScheduleDate(), Calendar.TUESDAY);
+
+			for (int i = 0; i < 15; i++) {
+				addScheduleUser(sday1, "email" + String.valueOf(i)
+						+ "@vanderbilt.edu", "Temp" + String.valueOf(i), "User");
+			}
 			addScheduleUser(sday2, "shengqh@gmail.com", "Tiger", "Sheng");
-			addScheduleUser(sday2, "quanhu.sheng@vanderbilt.edu", "Quanhu", "Sheng");
+			addScheduleUser(sday2, "quanhu.sheng@vanderbilt.edu", "Quanhu",
+					"Sheng");
 		}
 	}
 
@@ -61,14 +66,8 @@ public class ApplicationListenerImpl implements
 		return user;
 	}
 
-	private ScheduleDay addDay(Date adate) {
-		ScheduleDay result = new ScheduleDay();
-		result.setScheduleDate(adate);
-		service.addScheduleDay(result);
-		return result;
-	}
-
-	private ScheduleUser addScheduleUser(ScheduleDay aday, String email, String firstName, String lastName) {
+	private ScheduleUser addScheduleUser(ScheduleDay aday, String email,
+			String firstName, String lastName) {
 		ScheduleUser result = new ScheduleUser();
 		result.setDay(aday);
 		result.setEmail(email);

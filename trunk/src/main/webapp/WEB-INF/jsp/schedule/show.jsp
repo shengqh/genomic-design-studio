@@ -40,7 +40,7 @@
 	<jsp:include page="../menu.jsp" />
 	<p>
 	<h1 align="center">
-		Genomic Design Studio Date : ${day.date}
+		Genomic Design Studio : ${day.date}
 	</h1>
 	<p>
 		<c:if test="${!empty day.users}">
