@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.vanderbilt.cqs.RegistrationType;
 import edu.vanderbilt.cqs.bean.ScheduleDay;
 import edu.vanderbilt.cqs.bean.ScheduleUser;
 import edu.vanderbilt.cqs.bean.User;
@@ -126,11 +127,19 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Transactional
 	@Override
+	public ScheduleUser findScheduleUser(Long dayid, String email) {
+		return scheduleUserDAO.findScheduleUser(dayid, email);
+	}
+
+	@Transactional
+	@Override
 	public void addScheduleUser(ScheduleUser obj) {
 		scheduleUserDAO.save(obj);
-		obj.getDay()
-				.setRegisteredNumber(obj.getDay().getRegisteredNumber() + 1);
-		scheduleDayDAO.update(obj.getDay());
+		if (obj.getRegType() == RegistrationType.rtOnsite) {
+			obj.getDay().setRegisteredNumber(
+					obj.getDay().getRegisteredNumber() + 1);
+			scheduleDayDAO.update(obj.getDay());
+		}
 	}
 
 	@Transactional
@@ -143,16 +152,18 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Override
 	public void removeScheduleUser(Long id) {
 		ScheduleUser user = scheduleUserDAO.findById(id, false);
-		ScheduleDay day = user.getDay();
+		if (user.getRegType() == RegistrationType.rtOnsite) {
+			ScheduleDay day = user.getDay();
+			day.setRegisteredNumber(day.getRegisteredNumber() - 1);
+			scheduleDayDAO.update(day);
+		}
 		scheduleUserDAO.delete(user);
-		day.setRegisteredNumber(day.getRegisteredNumber() - 1);
-		scheduleDayDAO.update(day);
 	}
 
 	@Transactional
 	@Override
 	public List<ScheduleDay> listScheduleDay() {
-		return scheduleDayDAO.findAll();
+		return scheduleDayDAO.listAllScheduleDay();
 	}
 
 	@Transactional
@@ -165,5 +176,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Override
 	public ScheduleDay addNextScheduleDay(Date fromDay, int dayOfWeek) {
 		return scheduleDayDAO.addNextScheduleDay(fromDay, dayOfWeek);
+	}
+
+	@Transactional
+	@Override
+	public List<ScheduleDay> listComingScheduleDay() {
+		return scheduleDayDAO.listComingScheduleDay();
 	}
 }

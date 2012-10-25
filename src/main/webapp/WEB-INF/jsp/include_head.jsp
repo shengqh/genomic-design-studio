@@ -4,4 +4,4 @@
 <script type="text/javascript">
         var contexPath = "<%=request.getContextPath() %>";
 </script>
-<title>CQS/VUMC Project Trace System</title>
+<title>GDS : Genomic Design Studio Registration System</title>

@@ -14,6 +14,7 @@
 			commandName="scheduleUserForm">
 			<form:hidden path="id" />
 			<form:hidden path="dayId" />
+			<form:hidden path="regType" />
 			<form:errors path="*" cssClass="errorblock" element="div" />
 			<table id="box-table-a">
 				<tr>
@@ -27,7 +28,7 @@
 					<td><form:label path="firstname">
 							<spring:message code="label.firstname" />
 						</form:label></td>
-					<td><form:input path="firstname" cssClass="txt" size="200"/></td>
+					<td><form:input path="firstname" cssClass="txt" size="300"/></td>
 					<td><form:errors path="firstname" cssClass="error" /></td>
 				</tr>
 				<tr>
@@ -36,6 +37,13 @@
 						</form:label></td>
 					<td><form:input path="lastname" cssClass="txt" /></td>
 					<td><form:errors path="lastname" cssClass="error" /></td>
+				</tr>
+				<tr>
+					<td><form:label path="department">
+							Department/Division
+						</form:label></td>
+					<td><form:input path="department" cssClass="txt" /></td>
+					<td><form:errors path="department" cssClass="error" /></td>
 				</tr>
 				<tr>
 					<td colspan="3" align="center"><input type="submit"

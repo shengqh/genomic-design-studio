@@ -5,10 +5,12 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Repository;
 
+import edu.vanderbilt.cqs.RegistrationType;
 import edu.vanderbilt.cqs.Role;
 import edu.vanderbilt.cqs.Utils;
 import edu.vanderbilt.cqs.bean.ScheduleDay;
@@ -36,21 +38,33 @@ public class ApplicationListenerImpl implements
 			addUser("yu.shyr@vanderbilt.edu", "cqs", Role.ADMIN);
 			addUser("yan.guo@vanderbilt.edu", "cqs", Role.ADMIN);
 			addUser("fei.ye@vanderbilt.edu", "cqs", Role.ADMIN);
+			addUser("quanhu.sheng@vanderbilt.edu", "cqs", Role.USER);
 		}
 
 		if (!service.hasComingScheduleDay()) {
-			ScheduleDay sday1 = service.addNextScheduleDay(null,
-					Calendar.TUESDAY);
-			ScheduleDay sday2 = service.addNextScheduleDay(
-					sday1.getScheduleDate(), Calendar.TUESDAY);
+			Calendar day = Calendar.getInstance();
+			// day.set(2012, 10, 13, 9, 0, 0);
+			day.set(2012, 9, 2, 9, 0, 0);
 
-			for (int i = 0; i < 15; i++) {
-				addScheduleUser(sday1, "email" + String.valueOf(i)
-						+ "@vanderbilt.edu", "Temp" + String.valueOf(i), "User");
+			/*
+			 * Calendar now = Calendar.getInstance(); now.setTime(new Date());
+			 * while (day.before(now)) { day.add(Calendar.DAY_OF_YEAR, 7); }
+			 */
+			for (int j = 0; j < 10; j++) {
+				ScheduleDay sday = new ScheduleDay();
+				sday.setScheduleDate(day.getTime());
+				service.addScheduleDay(sday);
+
+				int userCount = Math.min(15, RandomUtils.nextInt(20));
+				for (int i = 0; i < userCount; i++) {
+					addScheduleUser(sday, "temp" + String.valueOf(i + 1)
+							+ "@vanderbilt.edu",
+							"temp" + String.valueOf(i + 1), "user",
+							"fake department");
+				}
+
+				day.add(Calendar.DAY_OF_YEAR, 7);
 			}
-			addScheduleUser(sday2, "shengqh@gmail.com", "Tiger", "Sheng");
-			addScheduleUser(sday2, "quanhu.sheng@vanderbilt.edu", "Quanhu",
-					"Sheng");
 		}
 	}
 
@@ -67,12 +81,14 @@ public class ApplicationListenerImpl implements
 	}
 
 	private ScheduleUser addScheduleUser(ScheduleDay aday, String email,
-			String firstName, String lastName) {
+			String firstName, String lastName, String department) {
 		ScheduleUser result = new ScheduleUser();
 		result.setDay(aday);
 		result.setEmail(email);
 		result.setFirstname(firstName);
 		result.setLastname(lastName);
+		result.setDepartment(department);
+		result.setRegType(RegistrationType.rtOnsite);
 		service.addScheduleUser(result);
 		return result;
 	}
