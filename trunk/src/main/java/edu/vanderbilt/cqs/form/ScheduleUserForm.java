@@ -2,6 +2,8 @@ package edu.vanderbilt.cqs.form;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Pattern;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,12 +19,15 @@ public class ScheduleUserForm implements Serializable {
 	private Long id;
 	
 	@NotEmpty(message = "Firstname is a required field")
+	@Pattern(regexp = "[a-zA-Z ]*", message = "First name should contain a-z, A-Z and blank space only")
 	private String firstname;
 
 	@NotEmpty(message = "Lastname is a required field")
+	@Pattern(regexp = "[a-zA-Z ]*", message = "Last name should contain a-z, A-Z and blank space only")
 	private String lastname;
 	
 	@NotEmpty(message = "Department is a required field")
+	@Pattern(regexp = "[a-zA-Z ]*", message = "Department should contain a-z, A-Z and blank space only")
 	private String department;
 
 	public String getDepartment() {

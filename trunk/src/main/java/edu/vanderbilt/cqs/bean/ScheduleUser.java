@@ -30,6 +30,17 @@ public class ScheduleUser implements Serializable {
 
 	@Column(name = "EMAIL")
 	private String email = "";
+	
+	@Column(name = "IPADDRESS")
+	private String ipaddress = "";
+
+	public String getIpaddress() {
+		return ipaddress;
+	}
+
+	public void setIpaddress(String ipaddress) {
+		this.ipaddress = ipaddress;
+	}
 
 	@Column(name = "DEPARTMENT")
 	private String department = "";

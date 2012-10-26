@@ -3,6 +3,7 @@ package edu.vanderbilt.cqs.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.jboss.logging.Logger;
@@ -91,7 +92,7 @@ public class ScheduleController extends RootController {
 	@RequestMapping(value = "/savescheduleuser", method = RequestMethod.POST)
 	public String saveScheduleUser(
 			@ModelAttribute("scheduleUserForm") @Valid ScheduleUserForm form,
-			BindingResult result, ModelMap model) {
+			BindingResult result, HttpServletRequest request, ModelMap model) {
 		if (result.hasErrors()) {
 			model.put("scheduleUserForm", form);
 			return "/schedule/adduser";
@@ -109,6 +110,7 @@ public class ScheduleController extends RootController {
 		user.setEmail(user.getEmail().toLowerCase());
 		user.setDay(day);
 		user.setRegisterTime(new Date());
+		user.setIpaddress(request.getRemoteAddr());
 
 		ScheduleUser oldUser = service.findScheduleUser(day.getId(),
 				user.getEmail());
