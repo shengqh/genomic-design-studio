@@ -61,6 +61,7 @@
 							<th scope="col">Email</th>
 							<th scope="col">Department/Division</th>
 							<sec:authorize access="hasRole('ROLE_MANAGER')">
+								<th scope="col">IP address</th>
 								<th scope="col">&nbsp;</th>
 							</sec:authorize>
 						</tr>
@@ -73,6 +74,7 @@
 								<td>${user.email}</td>
 								<td>${user.department}</td>
 								<sec:authorize access="hasRole('ROLE_MANAGER')">
+									<td>${user.ipaddress}</td>
 									<td>
 										<form
 											action="deletescheduleuser?dayid=${day.id}&&userid=${user.id}"
