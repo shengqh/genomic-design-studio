@@ -18,6 +18,8 @@ import javax.persistence.OrderBy;
 @Entity
 public class ScheduleDay implements Serializable {
 	private static final long serialVersionUID = -4930836800655207470L;
+	
+	public static int LimitCountPerDay = 15;
 
 	@Id
 	@GeneratedValue
@@ -87,5 +89,9 @@ public class ScheduleDay implements Serializable {
 	public String getDate() {
 		return new SimpleDateFormat("EEE, MMM d, yyyy").format(this
 				.getScheduleDate());
+	}
+	
+	public boolean getCanRegister(){
+		return (this.getRegisteredNumber() < ScheduleDay.LimitCountPerDay) && (!getPassed());
 	}
 }
