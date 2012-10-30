@@ -77,6 +77,9 @@ public class ScheduleController extends RootController {
 			model.put("message", "Day with id " + dayid.toString()
 					+ " not exists");
 			return "redirect:/showlist";
+		} else if (!day.getCanRegister()) {
+			model.put("message", day.getDate() + " can not register anymore");
+			return "redirect:/showlist";
 		}
 
 		ScheduleUserForm form = new ScheduleUserForm();
@@ -102,6 +105,9 @@ public class ScheduleController extends RootController {
 		if (day == null) {
 			model.put("message", "Day with id " + form.getDayId().toString()
 					+ " not exists");
+			return "redirect:/showlist";
+		} else if (!day.getCanRegister()) {
+			model.put("message", day.getDate() + " can not register anymore");
 			return "redirect:/showlist";
 		}
 

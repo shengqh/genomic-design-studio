@@ -42,16 +42,16 @@
 									</c:when>
 									<c:otherwise>
 										<c:choose>
-											<c:when test="${day.registeredNumber >= 15}">
-												<td>full</td>
-											</c:when>
-											<c:otherwise>
+											<c:when test="${day.canRegister}">
 												<td>
 													<form action="addscheduleuser?dayid=${day.id}"
 														method="post">
 														<input type="submit" value="register" />
 													</form>
 												</td>
+											</c:when>
+											<c:otherwise>
+												<td>full</td>
 											</c:otherwise>
 										</c:choose>
 									</c:otherwise>
