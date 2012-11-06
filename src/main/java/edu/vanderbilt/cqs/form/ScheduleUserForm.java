@@ -30,9 +30,23 @@ public class ScheduleUserForm implements Serializable {
 	@Pattern(regexp = "[a-zA-Z ]*", message = "Department should contain a-z, A-Z and blank space only")
 	private String department;
 
+	@NotEmpty(message = "Study PI is a required field")
+	@Pattern(regexp = "[a-zA-Z ]*", message = "Study PI should contain a-z, A-Z and blank space only")
+	private String studyPI;
+	
+	public String getStudyPI() {
+		return studyPI;
+	}
+
+	public void setStudyPI(String studyPI) {
+		this.studyPI = studyPI;
+	}
+
 	public String getDepartment() {
 		return this.department;
 	}
+	
+	
 
 	public void setDepartment(String department) {
 		this.department = department;

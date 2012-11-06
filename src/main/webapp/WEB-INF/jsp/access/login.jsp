@@ -1,11 +1,13 @@
 <%@ include file="../include.jsp"%>
 <html>
 <head>
+	<%@ include file="../include_head.jsp"%>
 	<link rel="stylesheet" type="text/css" media="screen" href="resources/css/style.css"/>
 	<title>Login</title>
 </head>
 
 <body>
+	<jsp:include page="../menu.jsp" />
 	<form class="login-form" action="j_spring_security_check" method="post" >
 		<fieldset>
 			<legend>Login Here</legend>

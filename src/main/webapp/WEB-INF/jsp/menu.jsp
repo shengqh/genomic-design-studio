@@ -24,7 +24,7 @@
 		</sec:authorize>
 
 		<sec:authorize ifNotGranted="ROLE_OBSERVER">
-			<li><a href="${loginUrl}">Login</a></li>
+			<li><a href="${loginUrl}">Admin</a></li>
 		</sec:authorize>
 	</ul>
 	<sec:authorize access="hasRole('ROLE_OBSERVER')">
