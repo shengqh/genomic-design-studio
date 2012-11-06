@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" media="screen" href="resources/css/style.css"/>
-	<title>Home</title>
+	<title>Access denied</title>
 </head>
 
 <body>

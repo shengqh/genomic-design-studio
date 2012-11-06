@@ -8,18 +8,17 @@
 	<jsp:include page="../menu.jsp" />
 
 	<p>
-	<h1 align="center">
-		<spring:message code="label.schedulelist" />
-	</h1>
+	<h1 align="center">Studio Dates	</h1>
 
 	<p>
+		<p class="message">${message}</p>
 		<c:if test="${!empty days}">
 			<c:set var="haspassed" value="0" />
 			<table id="box-table-a" summary="Schedule list">
 				<thead>
 					<tr>
-						<th scope="col">Schedule Date</th>
-						<th scope="col">Registered User</th>
+						<th scope="col">Date</th>
+						<th scope="col">Registered Users</th>
 						<th scope="col">&nbsp;</th>
 						<sec:authorize access="hasRole('ROLE_MANAGER')">
 							<th scope="col">&nbsp;</th>
@@ -97,6 +96,5 @@
 			</tbody>
 		</table>
 	</c:if>
-	<p class="message">${message}</p>
 </body>
 </html>

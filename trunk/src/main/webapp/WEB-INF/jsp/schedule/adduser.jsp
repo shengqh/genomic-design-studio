@@ -46,6 +46,13 @@
 					<td><form:errors path="department" cssClass="error" /></td>
 				</tr>
 				<tr>
+					<td><form:label path="studyPI">
+							Study PI
+						</form:label></td>
+					<td><form:input path="studyPI" cssClass="txt" /></td>
+					<td><form:errors path="studyPI" cssClass="error" /></td>
+				</tr>
+				<tr>
 					<td colspan="3" align="center"><input type="submit"
 						value="<spring:message code="label.add"/>" />
 						<form>

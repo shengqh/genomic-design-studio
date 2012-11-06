@@ -45,6 +45,17 @@ public class ScheduleUser implements Serializable {
 	@Column(name = "DEPARTMENT")
 	private String department = "";
 
+	@Column(name = "STUDYPI")
+	private String studyPI = "";
+
+	public String getStudyPI() {
+		return studyPI;
+	}
+
+	public void setStudyPI(String studyPI) {
+		this.studyPI = studyPI;
+	}
+
 	public String getDepartment() {
 		return this.department;
 	}
