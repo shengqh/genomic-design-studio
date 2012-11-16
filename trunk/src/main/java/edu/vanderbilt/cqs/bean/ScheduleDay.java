@@ -1,8 +1,6 @@
 package edu.vanderbilt.cqs.bean;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -15,12 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
+import edu.vanderbilt.cqs.Config;
+import edu.vanderbilt.cqs.Utils;
+
 @Entity
 public class ScheduleDay implements Serializable {
 	private static final long serialVersionUID = -4930836800655207470L;
 	
-	public static int LimitCountPerDay = 15;
-
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
@@ -38,7 +37,7 @@ public class ScheduleDay implements Serializable {
 
 	@Column(name = "ATTENDEENUMBER")
 	private int attendeeNumber = 0;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -79,19 +78,20 @@ public class ScheduleDay implements Serializable {
 		this.attendeeNumber = attendeeNumber;
 	}
 
-	public boolean getPassed() {
-		Calendar toDate = Calendar.getInstance();
-		Calendar schDate = Calendar.getInstance();
-		schDate.setTime(this.getScheduleDate());
-		return schDate.before(toDate);
-	}
-
 	public String getDate() {
-		return new SimpleDateFormat("EEE, MMM d, yyyy").format(this
-				.getScheduleDate());
+		return Utils.getDate(this.getScheduleDate());
 	}
 	
-	public boolean getCanRegister(){
-		return (this.getRegisteredNumber() < ScheduleDay.LimitCountPerDay) && (!getPassed());
+	public boolean getPassed(){
+		return Config.hasPassed(this.getScheduleDate());
+	}
+	
+	private boolean canRegister;
+	public boolean getCanRegister() {
+		return this.canRegister;
+	}
+	
+	public void setCanRegister(boolean value){
+		this.canRegister = value;
 	}
 }

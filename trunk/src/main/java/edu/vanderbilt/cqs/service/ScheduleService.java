@@ -3,6 +3,7 @@ package edu.vanderbilt.cqs.service;
 import java.util.Date;
 import java.util.List;
 
+import edu.vanderbilt.cqs.bean.LogTrace;
 import edu.vanderbilt.cqs.bean.ScheduleDay;
 import edu.vanderbilt.cqs.bean.ScheduleUser;
 import edu.vanderbilt.cqs.bean.User;
@@ -13,7 +14,7 @@ public interface ScheduleService {
 
 	void updateUser(User user);
 
-	void removeUser(Long id);
+	void removeUser(User user);
 
 	User findUser(Long id);
 
@@ -22,29 +23,29 @@ public interface ScheduleService {
 	// ScheduleDay
 	ScheduleDay findScheduleDay(Long id);
 
-	void addScheduleDay(ScheduleDay project);
+	void addScheduleDay(ScheduleDay day);
 
-	void updateScheduleDay(ScheduleDay project);
+	void updateScheduleDay(ScheduleDay day);
 
-	void removeScheduleDay(Long id);
+	void removeScheduleDay(ScheduleDay day);
 
 	List<ScheduleDay> listScheduleDay();
-	
+
 	List<ScheduleDay> listComingScheduleDay();
-	
+
 	boolean hasComingScheduleDay();
-	
+
 	ScheduleDay addNextScheduleDay(Date fromDay, int dayOfWeek);
 
 	// ScheduleUser
 	ScheduleUser findScheduleUser(Long id);
 
-	void addScheduleUser(ScheduleUser project);
+	void addScheduleUser(ScheduleUser user);
 
-	void updateScheduleUser(ScheduleUser project);
+	void updateScheduleUser(ScheduleUser user);
 
-	void removeScheduleUser(Long id);
-	
+	void removeScheduleUser(ScheduleUser user);
+
 	ScheduleUser findScheduleUser(Long dayid, String email);
 
 	// Other
@@ -59,4 +60,16 @@ public interface ScheduleService {
 	List<User> listValidUser(Integer role);
 
 	List<User> listInvalidUser();
+
+	// SystemOption
+	int getLimitUserCount();
+
+	int getCloseRegistrationHour();
+	
+	void loadOption();
+
+	// Log
+	void addLogTrace(LogTrace log);
+	
+	List<LogTrace> listLog();
 }

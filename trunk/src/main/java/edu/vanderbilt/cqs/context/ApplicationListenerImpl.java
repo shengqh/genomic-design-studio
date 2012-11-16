@@ -28,6 +28,8 @@ public class ApplicationListenerImpl implements
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 		if (bFirst) {
+			service.loadOption();
+			
 			bFirst = false;
 			initializeDatabase();
 		}
@@ -37,8 +39,8 @@ public class ApplicationListenerImpl implements
 		if (!service.hasUser()) {
 			addUser("yu.shyr@vanderbilt.edu", "cqs", Role.ADMIN);
 			addUser("quanhu.sheng@vanderbilt.edu", "cqs", Role.ADMIN);
-			addUser("yan.guo@vanderbilt.edu", "cqs", Role.MANAGER);
-			addUser("fei.ye@vanderbilt.edu", "cqs", Role.MANAGER);
+			addUser("yan.guo@vanderbilt.edu", "cqs", Role.VANGARD);
+			addUser("fei.ye@vanderbilt.edu", "cqs", Role.VANGARD);
 		}
 
 		if (!service.hasComingScheduleDay()) {

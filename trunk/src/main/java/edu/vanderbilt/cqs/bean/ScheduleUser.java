@@ -33,6 +33,17 @@ public class ScheduleUser implements Serializable {
 	
 	@Column(name = "IPADDRESS")
 	private String ipaddress = "";
+	
+	@Column(name="CHECKIN")
+	private Boolean checkIn;
+
+	public Boolean getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(boolean checkIn) {
+		this.checkIn = checkIn;
+	}
 
 	public String getIpaddress() {
 		return ipaddress;

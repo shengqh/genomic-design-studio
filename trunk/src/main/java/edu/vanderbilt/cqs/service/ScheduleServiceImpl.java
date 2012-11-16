@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.vanderbilt.cqs.RegistrationType;
+import edu.vanderbilt.cqs.bean.LogTrace;
 import edu.vanderbilt.cqs.bean.ScheduleDay;
 import edu.vanderbilt.cqs.bean.ScheduleUser;
 import edu.vanderbilt.cqs.bean.User;
+import edu.vanderbilt.cqs.dao.LogTraceDAO;
 import edu.vanderbilt.cqs.dao.ScheduleDayDAO;
 import edu.vanderbilt.cqs.dao.ScheduleUserDAO;
+import edu.vanderbilt.cqs.dao.SystemOptionDAO;
 import edu.vanderbilt.cqs.dao.UserDAO;
 
 @Service
@@ -26,6 +29,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Autowired
 	private ScheduleDayDAO scheduleDayDAO;
 
+	@Autowired
+	private SystemOptionDAO systemOptionDAO;
+
+	@Autowired
+	private LogTraceDAO logTraceDAO;
+
 	@Transactional
 	@Override
 	public void addUser(User user) {
@@ -34,11 +43,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Transactional
 	@Override
-	public void removeUser(Long id) {
-		User user = userDAO.findById(id, false);
-		if (user != null) {
-			userDAO.delete(user);
-		}
+	public void removeUser(User user) {
+		userDAO.delete(user);
 	}
 
 	@Transactional
@@ -115,8 +121,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Transactional
 	@Override
-	public void removeScheduleDay(Long id) {
-		scheduleDayDAO.deleteById(id);
+	public void removeScheduleDay(ScheduleDay day) {
+		scheduleDayDAO.delete(day);
 	}
 
 	@Transactional
@@ -150,8 +156,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Transactional
 	@Override
-	public void removeScheduleUser(Long id) {
-		ScheduleUser user = scheduleUserDAO.findById(id, false);
+	public void removeScheduleUser(ScheduleUser user) {
 		if (user.getRegType() == RegistrationType.rtOnsite) {
 			ScheduleDay day = user.getDay();
 			day.setRegisteredNumber(day.getRegisteredNumber() - 1);
@@ -163,7 +168,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Transactional
 	@Override
 	public List<ScheduleDay> listScheduleDay() {
-		return scheduleDayDAO.listAllScheduleDay();
+		return scheduleDayDAO.findAll();
 	}
 
 	@Transactional
@@ -182,5 +187,37 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Override
 	public List<ScheduleDay> listComingScheduleDay() {
 		return scheduleDayDAO.listComingScheduleDay();
+	}
+
+	@Override
+	public int getLimitUserCount() {
+		return this.limitUserCount;
+	}
+
+	@Override
+	public int getCloseRegistrationHour() {
+		return closeRegistrationHour;
+	}
+
+	@Transactional
+	@Override
+	public void addLogTrace(LogTrace log) {
+		logTraceDAO.save(log);
+	}
+
+	private int limitUserCount;
+	private int closeRegistrationHour;
+
+	@Transactional
+	@Override
+	public void loadOption() {
+		limitUserCount = systemOptionDAO.getLimitUserCount();
+		closeRegistrationHour = systemOptionDAO.getCloseRegistrationHour();
+	}
+
+	@Transactional
+	@Override
+	public List<LogTrace> listLog() {
+		return logTraceDAO.listAll();
 	}
 }
