@@ -80,16 +80,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public List<String> getRoles(Integer role) {
 		List<String> roles = new ArrayList<String>();
 
-		if (role.intValue() >= Role.OBSERVER) {
-			roles.add(Role.getRoleMap().get(Role.OBSERVER));
-		}
-
 		if (role.intValue() >= Role.USER) {
 			roles.add(Role.getRoleMap().get(Role.USER));
 		}
 
-		if (role.intValue() >= Role.MANAGER) {
-			roles.add(Role.getRoleMap().get(Role.MANAGER));
+		if (role.intValue() >= Role.VANGARD) {
+			roles.add(Role.getRoleMap().get(Role.VANGARD));
 		}
 
 		if (role.intValue() >= Role.ADMIN) {

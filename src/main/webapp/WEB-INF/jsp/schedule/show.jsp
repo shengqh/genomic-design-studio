@@ -19,8 +19,9 @@
 							<th scope="col">Email</th>
 							<th scope="col">Department/Division</th>
 							<th scope="col">Study PI</th>
-							<sec:authorize access="hasRole('ROLE_MANAGER')">
+							<sec:authorize access="hasRole('ROLE_VANGARD')">
 								<th scope="col">IP address</th>
+								<th scope="col">&nbsp;</th>
 								<th scope="col">&nbsp;</th>
 							</sec:authorize>
 						</tr>
@@ -33,8 +34,24 @@
 								<td>${user.email}</td>
 								<td>${user.department}</td>
 								<td>${user.studyPI}</td>
-								<sec:authorize access="hasRole('ROLE_MANAGER')">
+								<sec:authorize access="hasRole('ROLE_VANGARD')">
 									<td>${user.ipaddress}</td>
+									<td><c:choose>
+											<c:when test="${user.checkIn}">
+												<form
+													action="uncheckinscheduleuser?dayid=${day.id}&&userid=${user.id}"
+													method="post">
+													<input type="submit" value="uncheck in" />
+												</form>
+											</c:when>
+											<c:otherwise>
+												<form
+													action="checkinscheduleuser?dayid=${day.id}&&userid=${user.id}"
+													method="post">
+													<input type="submit" value="check in" />
+												</form>
+											</c:otherwise>
+										</c:choose></td>
 									<td>
 										<form
 											action="deletescheduleuser?dayid=${day.id}&&userid=${user.id}"

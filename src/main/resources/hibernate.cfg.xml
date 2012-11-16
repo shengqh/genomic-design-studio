@@ -9,5 +9,6 @@
         <mapping class="edu.vanderbilt.cqs.bean.User" />
         <mapping class="edu.vanderbilt.cqs.bean.ScheduleDay" />
         <mapping class="edu.vanderbilt.cqs.bean.ScheduleUser" />
+        <mapping class="edu.vanderbilt.cqs.bean.LogTrace" />
     </session-factory>
 </hibernate-configuration>
