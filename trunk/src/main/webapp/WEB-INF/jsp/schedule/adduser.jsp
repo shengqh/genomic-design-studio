@@ -28,7 +28,7 @@
 					<td><form:label path="firstname">
 							<spring:message code="label.firstname" />
 						</form:label></td>
-					<td><form:input path="firstname" cssClass="txt" size="300"/></td>
+					<td><form:input path="firstname" cssClass="txt" size="300" /></td>
 					<td><form:errors path="firstname" cssClass="error" /></td>
 				</tr>
 				<tr>
@@ -53,6 +53,13 @@
 					<td><form:errors path="studyPI" cssClass="error" /></td>
 				</tr>
 				<tr>
+					<td><form:label path="purpose">Purpose<br> (only visible to VANGARD admin)
+						</form:label></td>
+					<td><form:textarea id="textarea" path="purpose" rows="10" /></td>
+					<td><form:errors path="purpose" cssClass="error" /></td>
+				</tr>
+
+				<tr>
 					<td colspan="3" align="center"><input type="submit"
 						value="<spring:message code="label.add"/>" />
 						<form>
@@ -62,6 +69,7 @@
 				</tr>
 			</table>
 		</form:form>
-	<p class="message">${message}</body>
+	<p class="message">${message}
+</body>
 
 </html>
