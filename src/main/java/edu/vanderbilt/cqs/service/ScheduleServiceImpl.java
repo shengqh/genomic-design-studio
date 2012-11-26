@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.vanderbilt.cqs.Config;
 import edu.vanderbilt.cqs.RegistrationType;
 import edu.vanderbilt.cqs.bean.LogTrace;
 import edu.vanderbilt.cqs.bean.ScheduleDay;
@@ -189,35 +190,36 @@ public class ScheduleServiceImpl implements ScheduleService {
 		return scheduleDayDAO.listComingScheduleDay();
 	}
 
-	@Override
-	public int getLimitUserCount() {
-		return this.limitUserCount;
-	}
-
-	@Override
-	public int getCloseRegistrationHour() {
-		return closeRegistrationHour;
-	}
-
 	@Transactional
 	@Override
 	public void addLogTrace(LogTrace log) {
 		logTraceDAO.save(log);
 	}
 
-	private int limitUserCount;
-	private int closeRegistrationHour;
-
 	@Transactional
 	@Override
 	public void loadOption() {
-		limitUserCount = systemOptionDAO.getLimitUserCount();
-		closeRegistrationHour = systemOptionDAO.getCloseRegistrationHour();
+		Config.LimitCountPerDay = systemOptionDAO.getLimitUserCount();
+		Config.CloseRegistrationHour = systemOptionDAO.getCloseRegistrationHour();
 	}
 
 	@Transactional
 	@Override
 	public List<LogTrace> listLog() {
 		return logTraceDAO.listAll();
+	}
+
+	@Transactional
+	@Override
+	public void setLimitUserCount(int count) {
+		systemOptionDAO.saveLimitUserCount(count);
+		Config.LimitCountPerDay = count;
+	}
+
+	@Transactional
+	@Override
+	public void setCloseRegistrationHour(int hour) {
+		systemOptionDAO.saveCloseRegistrationHour(hour);
+		Config.CloseRegistrationHour = hour;
 	}
 }

@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public abstract class Config {
-	public static int DefaultLimitCountPerDay = 15;
+	public static int DefaultLimitCountPerDay = 7;
 	
 	public static int DefaultCloseRegistrationHour = 14;
 	

@@ -20,7 +20,7 @@
 		Each Tuesday, VANTAGE/VANGARD personnel host a genomic design studio
 		(GDS), in the format of office hours, to answer investigator questions
 		and provide direction on experimental design. Studio participation is
-		limited to 15 investigators per Tuesday; please click on the <a
+		limited to ${limitUserCount} investigators per Tuesday; please click on the <a
 			href="showlist.html">Schedule</a> link above to register for an
 		upcoming studio.
 	</p>
