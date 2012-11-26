@@ -63,6 +63,12 @@
 									</td>
 								</sec:authorize>
 							</tr>
+							<sec:authorize access="hasRole('ROLE_VANGARD')">
+								<tr class="comment">
+									<td>&nbsp;</td>
+									<td colspan="7">${user.purpose}</td>
+								</tr>
+							</sec:authorize>
 						</c:forEach>
 					</tbody>
 				</table>

@@ -18,6 +18,9 @@ public class ScheduleUserForm implements Serializable {
 
 	private Long id;
 	
+	@NotEmpty(message = "Purpose is a required field. It will not be seen except VANGARD user.")
+	private String purpose = "";
+	
 	@NotEmpty(message = "Firstname is a required field")
 	@Pattern(regexp = "[a-zA-Z ]*", message = "First name should contain a-z, A-Z and blank space only")
 	private String firstname;
@@ -124,5 +127,13 @@ public class ScheduleUserForm implements Serializable {
 
 	public void setDay(String day) {
 		this.day = day;
+	}
+
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
 	}
 }
