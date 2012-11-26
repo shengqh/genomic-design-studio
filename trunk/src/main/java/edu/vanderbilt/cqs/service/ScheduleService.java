@@ -62,11 +62,11 @@ public interface ScheduleService {
 	List<User> listInvalidUser();
 
 	// SystemOption
-	int getLimitUserCount();
-
-	int getCloseRegistrationHour();
-	
 	void loadOption();
+	
+	void setLimitUserCount(int count);
+	
+	void setCloseRegistrationHour(int hour);
 
 	// Log
 	void addLogTrace(LogTrace log);
