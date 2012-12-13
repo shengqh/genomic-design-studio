@@ -55,4 +55,13 @@ public class ScheduleDayDAOImpl extends GenericDAOImpl<ScheduleDay, Long>
 
 		return result;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ScheduleDay> listPassedScheduleDay() {
+		Criteria criteria = getSession().createCriteria(getPersistentClass())
+				.add(Restrictions.lt("scheduleDate", new Date()))
+				.addOrder(Order.asc("scheduleDate"));
+		return (List<ScheduleDay>) criteria.list();
+	}
 }

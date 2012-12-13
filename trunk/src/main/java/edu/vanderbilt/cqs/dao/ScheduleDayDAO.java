@@ -13,4 +13,6 @@ public interface ScheduleDayDAO extends GenericDAO<ScheduleDay, Long> {
 	List<ScheduleDay> listComingScheduleDay();
 	
 	List<ScheduleDay> listAllScheduleDay();
+
+	List<ScheduleDay> listPassedScheduleDay();
 }

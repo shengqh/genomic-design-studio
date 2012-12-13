@@ -222,4 +222,10 @@ public class ScheduleServiceImpl implements ScheduleService {
 		systemOptionDAO.saveCloseRegistrationHour(hour);
 		Config.CloseRegistrationHour = hour;
 	}
+
+	@Transactional
+	@Override
+	public List<ScheduleDay> listPassedScheduleDay() {
+		return scheduleDayDAO.listPassedScheduleDay();
+	}
 }

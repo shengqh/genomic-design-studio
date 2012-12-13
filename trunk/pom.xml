@@ -29,6 +29,8 @@
 		<javax.jstl-taglibs.version>1.2</javax.jstl-taglibs.version>
 		<javax.mail.version>1.4.5</javax.mail.version>
 
+		<org.apache.poi.version>3.9</org.apache.poi.version>
+
 		<!-- Testing -->
 		<mockito.version>1.9.5-rc1</mockito.version>
 		<junit.version>4.10</junit.version>
@@ -43,6 +45,13 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-jaxrs</artifactId>
 			<version>1.9.9</version>
+		</dependency>
+
+		<!-- Excel library -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${org.apache.poi.version}</version>
 		</dependency>
 
 		<!-- Spring Core -->

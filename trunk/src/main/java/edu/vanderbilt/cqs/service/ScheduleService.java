@@ -72,4 +72,6 @@ public interface ScheduleService {
 	void addLogTrace(LogTrace log);
 	
 	List<LogTrace> listLog();
+
+	List<ScheduleDay> listPassedScheduleDay();
 }
