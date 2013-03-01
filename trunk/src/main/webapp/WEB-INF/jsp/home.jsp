@@ -20,12 +20,13 @@
 		Each Tuesday, VANTAGE/VANGARD personnel host a genomic design studio
 		(GDS), in the format of office hours, to answer investigator questions
 		and provide direction on experimental design. Studio participation is
-		limited to ${limitUserCount} investigators per Tuesday; please click on the <a
-			href="showlist.html">Schedule</a> link above to register for an
-		upcoming studio.
+		limited to ${limitUserCount} investigators per Tuesday; please click
+		on the <a href="showlist.html">Schedule</a> link above to register for
+		an upcoming studio.
 	</p>
 
-	<p>Studios run from 11:30 a.m. to 12:30 p.m., with lunch served, in
-		MCN A0207 (VANTAGE offices).</p>
+	<p>Studios run from 12:00 p.m. to 1:00 p.m., with lunch served
+		(must sign up by 10am the Friday prior to studio to guarantee a boxed
+		lunch), in MCN A0207 (VANTAGE offices).</p>
 </body>
 </html>
