@@ -25,8 +25,6 @@
 		an upcoming studio.
 	</p>
 
-	<p>Studios run from 12:00 p.m. to 1:00 p.m., with lunch served
-		(must sign up by 10am the Friday prior to studio to guarantee a boxed
-		lunch), in MCN A0207 (VANTAGE offices).</p>
+	<p>Studios run from 12:00 p.m. to 1:00 p.m. in MCN A0207 (VANTAGE offices).</p>
 </body>
 </html>
